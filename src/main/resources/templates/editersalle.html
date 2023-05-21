@@ -1,0 +1,56 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <title>Ajouter une SALLE</title>
+</head>
+<body>
+<header>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark"  style="text-align:left;color:white" >
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" >
+            <li class="nav-item active"><a class="nav-link" th:href="@{/profs}">PROF</a></li>
+            <li class="nav-item"><a class="nav-link"  th:href="@{/salles}">Salles</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/occuper}">Occupper</a></li>
+        </ul>
+    </div>
+</header>
+<div class="container-fluid" >
+    <!-- secction des formulaire d'ajout -->
+    <div class="card card-primary"  style="margin:70px;" >
+        <div class=" card-header bg-primary"  style="color:white">Modifier une salle</div>
+        <div class=" card-body">
+            <form method="Post" th:action="@{/updatesalle/{codesal}
+                (codesal=${salle.codesal})}"  th:object="${salle}" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="code-sal">Code du salle</label>
+                            <input for="code-sal" class="form-control" id="code-sal" th:field="*{codesal}"
+                                   placeholder="Saisis le code du salle" readonly required />
+                            <span th:if="${#fields.hasErrors('codesal')}" th:errors="*{codesal}"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="designation">Designation</label>
+                            <input for="designation" class="form-control" id="designation" th:field="*{designation}"
+                                   placeholder="Saisis la designation" required/>
+                            <span th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"></span>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Modifier</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- fin du section des formulaire d'ajout -->
+</body>
+</html>

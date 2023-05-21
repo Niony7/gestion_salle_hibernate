@@ -1,0 +1,65 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <title>Ajouter Salle Occuper</title>
+</head>
+<body>
+<header>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark"  style="text-align:left;color:white" >
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" >
+            <li class="nav-item active"><a class="nav-link" th:href="@{/profs}">PROF</a></li>
+            <li class="nav-item"><a class="nav-link"  th:href="@{/salles}">Salles</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/occuper}">Occupper</a></li>
+        </ul>
+    </div>
+</header>
+<div class="container-fluid" >
+    <!-- secction des formulaire d'ajout -->
+    <div class="card card-primary"  style="margin:70px;" >
+        <div class=" card-header bg-primary"  style="color:white">Ajouter un Occuper</div>
+        <div class=" card-body">
+            <form method="Post" th:action="@{/saveoccuper}" th:object="${occuper}" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="codeprof">Code du proffesseur</label>
+                            <input for="code-prof" class="form-control" id="codeprof" th:field="*{prof.codeprof}"
+                                   placeholder="Saisis le code du prof" required/>
+                            <span th:if="${#fields.hasErrors('prof.codeprof')}" th:errors="*{prof.codeprof}"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="codesal">code du salle</label>
+                            <input for="code-salle" class="form-control" id="codesal" th:field="*{salle.codesal}"
+                                   placeholder="Saisis code du sale" required/>
+                            <span th:if="${#fields.hasErrors('salle.codesal')}" th:errors="*{salle.codesal}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="date">DATE</label>
+                            <input for="da-te" class="form-control" id="date" th:field="*{date}"
+                                   placeholder="Saisis la date" required type="datetime-local" th:value="${occuper.date}"/>
+                            <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- fin du section des formulaire d'ajout -->
+</body>
+</html>
